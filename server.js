@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();  // ALWAYS DECLRE FUNCTION NOT ONLY EXPRESS 
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const cors = require("cors")
 const hotelrouter = require("./routes/hotels.route");
 const catagoriesrouter = require("./routes/catagories.route");
 const connectDB = require("./config/dbconfig");
@@ -9,10 +10,10 @@ const catagoryDataDB = require("./routes/catagoryimport.route");
 const singlehotelrouter = require("./routes/singlehotel.router");
 const Autherisationuser = require("./routes/auth.router");
 const Wishlistrouter = require("./routes/wishlist.route");
+app.use(cors());
 app.use(express.json())  // YOU CAN ALSO USE THE BODY PARSER ALSO HERE INSTEAD OF THIS
 
 app.get('/', (req, res)=>{res.send("Hello World")})
-
 app.use('/api/hotelsdata',HotelsDataDB)
 app.use('/api/hotels',hotelrouter)
 app.use('/api/catagoriesdata',catagoryDataDB)
@@ -29,5 +30,5 @@ mongoose.connection.once("open", () =>{
     app.listen(process.env.PORT || PORT,()=>{
         console.log(`Server is running on port ${PORT}`)
     })
-}
+ }
 )

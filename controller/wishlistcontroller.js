@@ -1,8 +1,7 @@
-
 const Wishlist = require("../model/wishlist.model");
+
 const createwishlist = async (req, res) => {
     const newWishlist = req.body;
-
     try {
         const savedWishlist = await new Wishlist(newWishlist).save();
         res.status(201).json(savedWishlist);
@@ -11,6 +10,7 @@ const createwishlist = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error" });
     }
 }
+
 
 const watchwishlist = async (req, res) => {
     const { hotelId } = req.query;
@@ -24,6 +24,7 @@ const watchwishlist = async (req, res) => {
     }
 }
 
+// FOR DELETING THE WATCHLIST
 const deletewishlist =  async (req, res) =>{
     const { hotelId } = req.query;
 
@@ -34,6 +35,8 @@ const deletewishlist =  async (req, res) =>{
         console.error(err);
         res.status(500).json({ message: "Internal Server Error" });
     }
-  }
+}
 
 module.exports = { createwishlist,deletewishlist,watchwishlist };
+
+

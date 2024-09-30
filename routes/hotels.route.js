@@ -5,11 +5,11 @@ const router = express.Router();
 // BUT IT IS NOT GOODPRACTICE SO NOW WE AFTER INSERTING THE
 // DATA IN THE DATABASE WE SHOULD DO THE DYNAMIC WAY
 
-// const hotels = require("../data/hotels")
+const hotels = require("../data/hotels")
 
-// router.route("/").get((req,res)=>{
-//     res.send(hotels)
-// })
+router.route("/alldata").get((req,res)=>{
+    res.send(hotels)
+})
 
 // TAKING THE DATA FROM THE DATABASE
 const Hotel = require("../model/hotel.model");
